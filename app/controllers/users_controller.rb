@@ -13,13 +13,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    @user = current_user
     if @user.update(user_params)
       redirect_to users_path(@user), notice: "You have updated user successfully."
     else
-      render "show"
+      @books = Book.all
+      render "edit"
     end
   end
 
